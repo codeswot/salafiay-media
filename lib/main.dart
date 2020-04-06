@@ -7,24 +7,31 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        primaryColor: Color(0xfff98150),
+        accentColor: Color(0xfff98150),
+        cursorColor: Color(0xfff98150),
+      ),
       debugShowCheckedModeBanner: false,
-
-       routes: {
-         '/':(context)=> HomePage(),
-       },
+      routes: {
+        '/': (context) => HomePage(),
+      },
     );
-
   }
 }
+
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
 }
+
 String test = "Pressed";
- bool isTest = false;
+bool isTest = false;
+
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    final deviceHeight = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -54,10 +61,10 @@ class _HomePageState extends State<HomePage> {
         ),
         actions: <Widget>[
           IconButton(
-            onPressed: (){
-setState(() {
-  isTest = !isTest;
-});
+            onPressed: () {
+              setState(() {
+                isTest = !isTest;
+              });
             },
             icon: Icon(
               Icons.menu,
@@ -72,22 +79,38 @@ setState(() {
         child: Column(
           children: <Widget>[
             Container(
-                  width: 100.0,
-                  height: 40.0,
-                  padding: EdgeInsets.all(10.0),
-                  decoration: BoxDecoration(
-                      // color: Colors.blueAccent,
-                      borderRadius: BorderRadius.circular(10.0)),
-                  child: Center(child: Text(isTest ? 'Search here ...': test,)),
+              child: Form(
+                child: Container(
+                  margin: EdgeInsets.only(
+                    left: 10.0,
+                    right: 10.0,
+                  ),
+                  width: double.infinity,
+                  height: 45,
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.search),
+                      contentPadding: EdgeInsets.all(8.0),
+                      
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(
+                          20,
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
-          Container(
-            height: 300,
-            child: ListView(
-                children: <Widget>[
-                  
-                ],
               ),
-          ),
+            ),
+            // SizedBox(
+            //   height: 10.0,
+            // ),
+            Container(
+              height: deviceHeight * 0.5,
+              child: ListView(
+                children: <Widget>[],
+              ),
+            ),
           ],
         ),
       ),
