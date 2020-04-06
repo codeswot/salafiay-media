@@ -8,20 +8,21 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-
-       routes: {
-         '/':(context)=> HomePage(),
-       },
+      routes: {
+        '/': (context) => HomePage(),
+      },
     );
-
   }
 }
+
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
 }
+
 String test = "Pressed";
- bool isTest = false;
+bool isTest = false;
+
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
@@ -54,10 +55,10 @@ class _HomePageState extends State<HomePage> {
         ),
         actions: <Widget>[
           IconButton(
-            onPressed: (){
-setState(() {
-  isTest = !isTest;
-});
+            onPressed: () {
+              setState(() {
+                isTest = !isTest;
+              });
             },
             icon: Icon(
               Icons.menu,
@@ -72,22 +73,24 @@ setState(() {
         child: Column(
           children: <Widget>[
             Container(
-                  width: 100.0,
-                  height: 40.0,
-                  padding: EdgeInsets.all(10.0),
-                  decoration: BoxDecoration(
-                      // color: Colors.blueAccent,
-                      borderRadius: BorderRadius.circular(10.0)),
-                  child: Center(child: Text(isTest ? 'Search here ...': test,)),
+              child: Form(
+                child: TextFormField(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(
+                        10,
+                      ),
+                    ),
+                  ),
                 ),
-          Container(
-            height: 300,
-            child: ListView(
-                children: <Widget>[
-                  
-                ],
               ),
-          ),
+            ),
+            Container(
+              height: 300,
+              child: ListView(
+                children: <Widget>[],
+              ),
+            ),
           ],
         ),
       ),
