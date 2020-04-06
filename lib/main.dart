@@ -8,11 +8,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+
+       routes: {
+         '/':(context)=> HomePage(),
+       },
     );
+
   }
 }
-
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -66,16 +69,26 @@ setState(() {
         elevation: 0.0,
       ),
       body: SafeArea(
-        child: Center(
-          child: Container(
-            width: 80.0,
-            height: 80.0,
-            padding: EdgeInsets.all(10.0),
-            decoration: BoxDecoration(
-                color: Colors.blueAccent,
-                borderRadius: BorderRadius.circular(10.0)),
-            child: Center(child: Text(isTest ? 'Home Page': test,)),
+        child: Column(
+          children: <Widget>[
+            Container(
+                  width: 100.0,
+                  height: 40.0,
+                  padding: EdgeInsets.all(10.0),
+                  decoration: BoxDecoration(
+                      // color: Colors.blueAccent,
+                      borderRadius: BorderRadius.circular(10.0)),
+                  child: Center(child: Text(isTest ? 'Search here ...': test,)),
+                ),
+          Container(
+            height: 300,
+            child: ListView(
+                children: <Widget>[
+                  
+                ],
+              ),
           ),
+          ],
         ),
       ),
     );
