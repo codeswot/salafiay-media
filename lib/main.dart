@@ -80,46 +80,29 @@ class _HomePageState extends State<HomePage> {
           children: <Widget>[
             Container(
               child: Form(
-<<<<<<< HEAD
                 child: Container(
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.search),
+                      contentPadding: EdgeInsets.all(8.0),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(
+                          20,
+                        ),
+                      ),
+                    ),
+                  ),
                   margin: EdgeInsets.only(
                     left: 10.0,
                     right: 10.0,
                   ),
                   width: double.infinity,
                   height: 45,
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.search),
-                      contentPadding: EdgeInsets.all(8.0),
-                      
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(
-                          20,
-                        ),
-=======
-                child: TextFormField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(
-                        10,
->>>>>>> 67337020e2fe17ea7578c452356368302460b091
-                      ),
-                    ),
-                  ),
                 ),
               ),
             ),
-<<<<<<< HEAD
-            // SizedBox(
-            //   height: 10.0,
-            // ),
             Container(
               height: deviceHeight * 0.5,
-=======
-            Container(
-              height: 300,
->>>>>>> 67337020e2fe17ea7578c452356368302460b091
               child: ListView(
                 children: <Widget>[],
               ),
