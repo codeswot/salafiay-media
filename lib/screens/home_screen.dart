@@ -220,19 +220,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   SizedBox(
                     height: 25.0,
                   ),
-                  Stack(
+                  Column(
                     children: <Widget>[
-                      Column(
-                        children: <Widget>[
-                          CircleAvatar(
-                            radius: 40,
-                          ),
-                          Container(
-                            width: 125,
-                            height: 77,
-                            color: kBlueColor,
-                          ),
-                        ],
+                      CircleAvatar(
+                        radius: 40,
+                      ),
+                      Container(
+                        width: 125,
+                        height: 77,
+                        color: kBlueColor,
                       ),
                     ],
                   ),
