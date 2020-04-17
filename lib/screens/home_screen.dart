@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:salafiyy_media/components/info_drawer.dart';
 import 'package:salafiyy_media/components/styles.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -15,9 +16,14 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     // final deviceHeight = MediaQuery.of(context).size.height;
     final deviceWidth = MediaQuery.of(context).size.width;
+    final GlobalKey _scaffoldKey = new GlobalKey();
+
     return Scaffold(
+      key: _scaffoldKey,
       backgroundColor: kWhiteColor,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
+        titleSpacing: 5.0,
         title: Row(
           children: <Widget>[
             SizedBox(
@@ -43,24 +49,21 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
         actions: <Widget>[
-          IconButton(
-            onPressed: () {
-              setState(() {});
-            },
-            icon: Icon(
-              Icons.menu,
-              color: kBlackColor,
+          Builder(
+            builder: (context) => IconButton(
+              onPressed: () => Scaffold.of(context).openEndDrawer(),
+              icon: Icon(Icons.filter_list),
             ),
-          )
+          ),
         ],
         backgroundColor: kWhiteColor,
         elevation: 0.0,
       ),
+      endDrawer: Drawer(
+        child: SafeArea(child: InfoDrawer()),
+      ),
       body: Container(
-        margin: EdgeInsets.only(
-            // left: 10.0,
-            // right: 10.0,
-            ),
+        margin: EdgeInsets.only(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -175,8 +178,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     height: 25.0,
                   ),
                   Container(
-                    height: 200,
-                    width: 200,
+                    height: 180.0,
+                    color: kWhiteColor,
                     child: ListView(
                       physics: BouncingScrollPhysics(),
                       scrollDirection: Axis.horizontal,
@@ -217,30 +220,108 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     ),
                   ),
-                  SizedBox(
-                    height: 25.0,
-                  ),
-                  Column(
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
-                      CircleAvatar(
-                        radius: 40,
-                      ),
-                      Container(
-                        width: 125,
-                        height: 77,
-                        color: kBlueColor,
-                      ),
+                      DetailCard(),
+                      DetailCard(),
                     ],
                   ),
-                  SizedBox(
-                    height: 100,
-                  )
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      DetailCard(),
+                      DetailCard(),
+                    ],
+                  ),
                 ],
               ),
             ),
           ],
         ),
       ),
+    );
+  }
+}
+
+class DetailCard extends StatelessWidget {
+  const DetailCard({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(
+        bottom: 5.0,
+        top: 5.0,
+      ),
+      child: Center(
+          child: Container(
+        height: 150.0,
+        width: 170.0,
+        child: Stack(
+          children: <Widget>[
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                padding: EdgeInsets.only(top: 30.0),
+                height: 85.0,
+                width: 150.0,
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      offset: Offset(2, .5),
+                      color: Color(0x0e62ceef),
+                      spreadRadius: 1,
+                      blurRadius: 2,
+                    ),
+                    BoxShadow(
+                      offset: Offset(-2, .5),
+                      color: Color(0x0e62ceef),
+                      spreadRadius: 1,
+                      blurRadius: 2,
+                    ),
+                  ],
+                  borderRadius: BorderRadius.vertical(
+                    bottom: Radius.circular(10.0),
+                  ),
+                  color: Colors.white,
+                ),
+                child: Container(
+                  child: Center(
+                      child: Text(
+                    'ALBANI',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16.0,
+                    ),
+                  )),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(10.0),
+                    ),
+                    color: Color(0xff62ceef),
+                  ),
+                ),
+              ),
+            ),
+            Align(
+              alignment: AlignmentDirectional.topCenter,
+              child: CircleAvatar(
+                radius: 55.0,
+                backgroundColor: Colors.white,
+                child: CircleAvatar(
+                  radius: 50.0,
+                  backgroundImage: NetworkImage(
+                      'https://www.direct.darulfikr.com/1537795766_vvvvv.jpg'),
+                ),
+              ),
+            ),
+          ],
+        ),
+      )),
     );
   }
 }
